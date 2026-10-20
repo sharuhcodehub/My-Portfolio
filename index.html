@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#08090c">
+<meta name="description" content="Sharon — BCA student exploring DevOps, cloud computing, Linux and automation.">
+<title>Sharon | The Next Build</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+:root{--bg:#08090c;--panel:#111319;--line:#242731;--text:#f4f5f7;--muted:#9a9eaa;--green:#b8ff6a;--blue:#87a8ff;--max:1160px}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:10;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 max(5vw,24px);border-bottom:1px solid #ffffff0d;position:sticky;top:0;background:#08090ce8;backdrop-filter:blur(18px);z-index:20}
+.brand{display:flex;align-items:center;gap:9px;font:700 13px "Space Grotesk",sans-serif;letter-spacing:2px}
+.brand-mark{display:grid;place-items:center;width:29px;height:29px;border:1px solid #b8ff6a88;border-radius:9px;color:var(--green);font-size:15px;letter-spacing:0}
+.brand-dot{color:var(--green);margin-left:-8px}
+.nav nav{display:flex;align-items:center;gap:32px;font-size:12px;color:#b7bac4}
+.nav nav a:hover{color:var(--green)}
+.nav-cta{border:1px solid #343843;border-radius:7px;padding:11px 15px;color:#fff!important}
+.menu-toggle{display:none;background:none;border:0;color:white;font-size:24px}
+.section{max-width:var(--max);margin:auto;padding:110px 30px}
+.hero{min-height:690px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:42px;position:relative;padding-top:75px;padding-bottom:120px}
+.eyebrow,.section-label,.project-number,.status,.cert-issuer,.project-bottom,.scroll-cue{font:500 10px "DM Mono",monospace;letter-spacing:1.7px;color:var(--muted)}
+.eyebrow{display:flex;align-items:center;gap:10px;color:#c5c9d2}
+.pulse,.meta-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 13px #b8ff6a99;display:inline-block}
+
+/* Small profile picture on the first page */
+.profile-photo{
+  width:82px;
+  height:82px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:50%;
+  border:2px solid #b8ff6a;
+  box-shadow:0 0 22px #b8ff6a20;
+  margin:0 0 20px;
+  display:block;
+}
+
+.hero h1,.section h2,.contact-panel h2{font:600 clamp(44px,5.4vw,76px)/1.04 "Space Grotesk",sans-serif;letter-spacing:-3.6px;margin:25px 0}
+.gradient-text{background:linear-gradient(100deg,#f6f7f9 0%,#b8ff6a 52%,#87a8ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-desc{max-width:530px;color:var(--muted);font-size:15px;line-height:1.9}
+.hero-actions,.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:29px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:18px;border-radius:7px;padding:14px 18px;font-size:12px;font-weight:700;transition:transform .2s,border .2s}
+.button:hover{transform:translateY(-3px)}
+.button.primary{background:var(--green);color:#10130b}
+.button.ghost{border:1px solid #333743;color:#e4e6eb}
+.hero-meta{margin-top:50px;display:flex;gap:15px;align-items:center;font-size:11px;color:#e2e4e9}
+.hero-meta span:last-child{color:var(--muted)}
+.hero-visual{min-height:400px;display:grid;place-items:center;position:relative}
+.orbit{position:absolute;border:1px solid #b8ff6a15;border-radius:50%;width:420px;height:420px}
+.orbit-two{width:330px;height:330px;border-color:#87a8ff20}
+.terminal{position:relative;width:min(100%,420px);background:#101218;border:1px solid #343945;border-radius:12px;box-shadow:0 25px 90px #0009,0 0 60px #b8ff6a0b;overflow:hidden;transform:rotate(-2deg);z-index:2}
+.terminal-top{height:43px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;border-bottom:1px solid #ffffff10;color:#737986;font:10px "DM Mono",monospace}
+.window-dots{display:flex;gap:5px}
+.window-dots i{width:7px;height:7px;background:#ff6f69;border-radius:50%}
+.window-dots i:nth-child(2){background:#ffd166}
+.window-dots i:nth-child(3){background:#b8ff6a}
+.terminal-body{padding:24px 23px 18px;font:12px/1.8 "DM Mono",monospace}
+.terminal-body p{margin:0 0 12px}
+.terminal-green{color:var(--green)}
+.terminal-blue{color:var(--blue)}
+.terminal-output{color:#c6cbd5!important;padding-left:17px}
+.cursor{color:var(--green);animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.terminal-footer{display:flex;justify-content:space-between;padding:12px 18px;border-top:1px solid #ffffff0d;font:9px "DM Mono",monospace;letter-spacing:1px;color:#737986}
+.terminal-footer span:first-child{color:var(--green)}
+.float-card{position:absolute;display:flex;gap:10px;align-items:center;background:#161920dd;border:1px solid #343945;border-radius:9px;padding:12px 14px;z-index:3;box-shadow:0 12px 35px #0007}
+.card-top{top:36px;right:-1px}
+.card-bottom{bottom:45px;left:-7px}
+.float-icon{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;background:#b8ff6a19;color:var(--green);font-size:17px}
+.float-icon.green{background:#87a8ff19;color:var(--blue)}
+.float-card b,.float-card small{display:block}
+.float-card b{font-size:11px}
+.float-card small{font-size:10px;color:var(--muted);margin-top:4px}
+.scroll-cue{position:absolute;bottom:36px;left:30px;display:flex;align-items:center;gap:12px;font-size:9px}
+.scroll-cue span{height:30px;width:1px;background:linear-gradient(var(--green),transparent)}
+.ticker{border-top:1px solid #ffffff10;border-bottom:1px solid #ffffff10;overflow:hidden;white-space:nowrap;padding:20px 0;color:#777d89;font:500 12px "DM Mono",monospace;letter-spacing:2px}
+.ticker div{width:max-content;animation:marquee 32s linear infinite}
+.ticker b{color:var(--green);margin:0 32px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.section-label{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:18px;font-size:9px}
+.section-label span:first-child{color:var(--green)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding-top:50px}
+.section h2{font-size:clamp(38px,4.5vw,58px);letter-spacing:-2.5px;margin:18px 0}
+.about-copy{padding-top:8px;color:var(--muted);font-size:14px;line-height:1.95}
+.info-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:23px}
+.info-chips span,.tags span{border:1px solid #2c303b;border-radius:5px;padding:7px 10px;color:#c5c9d2;font-size:10px}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin:40px 0 30px}
+.section-heading h2{margin:0}
+.section-heading p{max-width:360px;color:var(--muted);font-size:13px;line-height:1.7}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.skill-card{background:linear-gradient(145deg,#14171e,#0e1015);border:1px solid #252a34;border-radius:10px;padding:23px;min-height:230px;transition:transform .2s,border .2s}
+.skill-card:hover,.project-card:hover{transform:translateY(-5px);border-color:#526044}
+.skill-icon{font:600 20px "DM Mono",monospace;color:var(--green);margin-bottom:23px}
+.skill-icon.cloud{color:var(--blue)}
+.skill-icon.code{color:#d3a6ff}
+.skill-icon.database{color:#ffbd70}
+.skill-card h3,.project-card h3{font:600 16px "Space Grotesk",sans-serif;margin:0 0 10px}
+.skill-card p,.project-card p{color:var(--muted);font-size:12px;line-height:1.8;min-height:60px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px}
+.tags span{font-size:9px;padding:6px 8px}
+.section-note{color:#747986;font-size:11px;margin-top:22px}
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.project-card{border:1px solid #272b35;border-radius:11px;padding:22px;background:linear-gradient(140deg,#14161d,#0d0f14);transition:transform .2s,border .2s}
+.project-top,.project-bottom{display:flex;justify-content:space-between;align-items:center}
+.project-number{font-size:9px}
+.status{display:flex;align-items:center;gap:6px;font-size:8px;color:var(--green)}
+.status i{width:5px;height:5px;border-radius:50%;background:var(--green)}
+.status.planned{color:#d0b2ff}
+.status.planned i{background:#d0b2ff}
+.project-art{height:150px;margin:22px 0;display:flex;align-items:center;justify-content:center;border:1px solid #ffffff0a;border-radius:8px;position:relative;overflow:hidden}
+.art-terminal{background:radial-gradient(ellipse at center,#27351e,#11151a 70%)}
+.art-terminal>span{font:600 45px "DM Mono",monospace;color:var(--green);text-shadow:0 0 30px #b8ff6a55}
+.art-lines{position:absolute;bottom:19px;left:20px;right:20px;display:flex;gap:8px}
+.art-lines i{height:3px;border-radius:2px;background:#b8ff6a30;width:25%}
+.art-lines i:nth-child(2){width:40%;background:#87a8ff30}
+.art-lines i:nth-child(3){width:15%;background:#d3a6ff30}
+.art-cloud{background:radial-gradient(ellipse at center,#172d41,#101319 72%);flex-direction:column;gap:10px}
+.art-cloud span{font-size:48px;color:var(--blue)}
+.art-cloud b{font:11px "DM Mono",monospace;color:#c3d6ff}
+.project-card p{min-height:60px}
+.project-bottom{border-top:1px solid #252a34;margin-top:22px;padding-top:15px;font-size:9px}
+.project-bottom span:last-child{font-size:16px;color:var(--green)}
+.cert-list{border-top:1px solid #292d36}
+.cert-item{display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid #292d36}
+.cert-logo{width:58px;height:58px;flex-shrink:0;display:grid;place-items:center;border-radius:9px;font:700 14px "Space Grotesk",sans-serif}
+.cert-logo.ibm{background:#102b47;color:#6cbcff;letter-spacing:1px}
+.cert-logo.fcc{background:#25351d;color:#b8ff6a}
+.cert-details{flex:1}
+.cert-issuer{font-size:9px;color:var(--green)}
+.cert-details h3{font:500 16px "Space Grotesk",sans-serif;margin:7px 0}
+.cert-details p{color:var(--muted);font-size:11px;margin:0}
+.cert-check{display:grid;place-items:center;border:1px solid #b8ff6a50;color:var(--green);width:25px;height:25px;border-radius:50%;font-size:12px}
+.contact-section{padding-top:90px;padding-bottom:100px}
+.contact-panel{border:1px solid #2a3039;border-radius:15px;padding:clamp(30px,6vw,75px);background:radial-gradient(ellipse at 85% 15%,#b8ff6a0c,transparent 35%),linear-gradient(135deg,#12151a,#0b0d11)}
+.contact-panel h2{font-size:clamp(43px,6vw,70px)}
+.contact-panel>p:not(.eyebrow){color:var(--muted);font-size:13px;line-height:1.8;max-width:460px}
+.contact-small{font-size:10px!important;margin-top:26px}
+footer{border-top:1px solid #20232b;padding:25px max(5vw,24px);display:flex;align-items:center;justify-content:space-between;color:#757b87;font-size:10px}
+footer .brand{color:#e6e7eb;font-size:11px}
+@media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:80px;gap:20px}.hero-visual{min-height:390px}.hero-copy{max-width:650px}.skills-grid{grid-template-columns:repeat(2,1fr)}.about-grid{gap:35px}.section-heading{align-items:start;flex-direction:column;gap:5px}.section-heading p{margin:0}.card-top{right:0}.card-bottom{left:0}}
+@media(max-width:600px){.nav{height:65px}.menu-toggle{display:block}.nav nav{display:none;position:absolute;top:64px;left:0;right:0;padding:20px 24px 24px;background:#0d0f14;border-bottom:1px solid #272b35;flex-direction:column;align-items:stretch;gap:19px}.nav nav.open{display:flex}.nav nav a{font-size:13px}.section{padding:75px 22px}.hero{min-height:auto;padding-top:65px;padding-bottom:100px}.hero h1{font-size:clamp(42px,11vw,60px);letter-spacing:-2.8px}.hero-desc{font-size:13px}.hero-visual{min-height:330px}.orbit{width:300px;height:300px}.orbit-two{width:240px;height:240px}.terminal{width:100%;transform:rotate(-1deg)}.terminal-body{padding:20px 16px;font-size:10px}.float-card{padding:9px 10px}.card-top{top:15px}.card-bottom{bottom:15px}.scroll-cue{left:22px;bottom:30px}.about-grid{grid-template-columns:1fr;gap:8px;padding-top:25px}.section-label span:last-child{max-width:50%;text-align:right;font-size:8px}.section h2{font-size:42px}.skills-grid,.project-grid{grid-template-columns:1fr}.skill-card{min-height:auto}.skill-card p{min-height:0}.project-card p{min-height:0}.cert-item{gap:13px}.cert-logo{width:48px;height:48px}.cert-details h3{font-size:13px;line-height:1.5}.cert-details p{line-height:1.6}.cert-check{width:22px;height:22px}footer{gap:15px;flex-wrap:wrap}footer>span:nth-child(2){order:3;width:100%}.contact-panel{padding:28px 22px}.contact-panel h2{letter-spacing:-2px}.ticker{font-size:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.cert-details a {
+  display: inline-block;
+  margin-top: 12px;
+  color: #7cffb2;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+.cert-details a:hover {
+  color: #7dd3fc;
+  transform: translateX(4px);
+}
+</style>
+</head>
+
+<body>
+<div class="grain"></div>
+
+<header class="nav">
+<a class="brand" href="#home"><span class="brand-mark">S</span> SHARON<span class="brand-dot">.</span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+<nav id="navLinks">
+<a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#certificates">Certificates</a><a class="nav-cta" href="#contact">Contact ↗</a>
+</nav>
+</header>
+
+<main>
+<section class="hero section" id="home">
+<div class="hero-copy">
+
+<!-- Add your photo later: save it as sharon.jpg beside this HTML file -->
+<img class="profile-photo" src="sharon.jpeg" alt="Sharon's profile picture" width="82" height="82">
+
+<p class="eyebrow"><span class="pulse"></span> BCA STUDENT · CREATIVE THINKER</p><h1>Curious today.<br><span class="gradient-text">Capable tomorrow.</span></h1>
+<p class="hero-desc">I'm Sharon, a BCA student building skills in DevOps, cloud computing, Linux, and automation. I'm focused on strengthening my technical foundation through continuous learning and hands-on projects.</p>
+<div class="hero-actions"><a class="button primary" href="#projects">Explore my work <span>↘</span></a><a class="button ghost" href="#about">About me</a></div>
+<div class="hero-meta"><span class="meta-dot"></span> Currently learning <span>DevOps · Cloud computing . Web design</span></div>
+</div>
+
+<div class="hero-visual">
+<div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+<div class="terminal">
+<div class="terminal-top"><div class="window-dots"><i></i><i></i><i></i></div><span>sharon@learning-lab ~</span><span>•••</span></div>
+<div class="terminal-body">
+<p><span class="terminal-green">➜</span> <span class="terminal-blue">~/future</span> whoami</p>
+<p class="terminal-output">BCA student</p>
+<p><span class="terminal-green">➜</span> <span class="terminal-blue">~/future</span> cat goals.txt</p>
+<p class="terminal-output">Learn. Build. Automate.</p><p class="terminal-output">Become a DevOps engineer.</p>
+<p><span class="terminal-green">➜</span> <span class="terminal-blue">~/future</span> <span class="cursor">_</span></p>
+</div>
+<div class="terminal-footer"><span>● SYSTEM ONLINE</span><span>BUILD 001</span></div>
+</div>
+<div class="float-card card-top"><span class="float-icon">⌘</span><div><b>Curious mind</b><small>Always exploring</small></div></div>
+<div class="float-card card-bottom"><span class="float-icon green">↗</span><div><b>Next commit</b><small>In progress…</small></div></div>
+</div>
+<div class="scroll-cue"><span></span> SCROLL TO EXPLORE</div>
+</section>
+
+<section class="ticker"><div>DEVOPS <b>✳</b> CLOUD COMPUTING <b>✳</b> LINUX <b>✳</b> AUTOMATION <b>✳</b> GIT & GITHUB <b>✳</b> DEVOPS <b>✳</b> CLOUD COMPUTING <b>✳</b> LINUX <b>✳</b> AUTOMATION <b>✳</b></div></section>
+
+<section class="section about-section" id="about">
+<div class="section-label"><span>01 / ABOUT</span><span>THE PERSON BEHIND THE TERMINAL</span></div>
+<div class="about-grid">
+<div><p class="eyebrow">A WORK IN PROGRESS — ALWAYS LEARNING</p><h2>Curiosity is my<br><span class="gradient-text">starting point.</span></h2></div>
+<div class="about-copy">
+<p>I'm someone who enjoys learning, exploring new ideas, and turning curiosity into creativity. I'm particularly interested in DevOps and Cloud Computing, and I'm continuously developing my knowledge in these areas.
+ Alongside my technical interests, I enjoy exploring animation and design as creative side skills. I'm always looking for opportunities to learn, experiment, and build something meaningful.</p>
+<div class="info-chips"><span>🎓 BCA</span><span>☁ Cloud & DevOps</span><span>⌨ Hands-on learning</span></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="skills">
+<div class="section-label"><span>02 / SKILLS</span><span>SKILLS I'M EXPLORING</span></div>
+<div class="section-heading"><h2>Skills I'm <span class="gradient-text">Developing.</span></h2><p>My skills are growing through coursework, guided learning and practice.</p></div>
+<div class="skills-grid">
+<article class="skill-card"><div class="skill-icon">⌘</div><h3>DevOps & Automation</h3><p>Exploring tools and practices thatstreamline development and deployment.</p><div class="tags"><span>Git</span><span>GitHub</span><span>Automation</span></div></article>
+<article class="skill-card"><div class="skill-icon cloud">☁</div><h3>Cloud Computing</h3><p>Learning cloud security concepts, infrastructure and how services fit together.</p><div class="tags"><span>Cloud fundamentals</span><span>infrastructure</span></div></article>
+<article class="skill-card"><div class="skill-icon code">&lt;/&gt;</div><h3>Web Development</h3><p>Creating a responsive websites with clean layouts and interactive elements.</p><div class="tags"><span>HTML</span><span>CSS</span><span>javascript</span></div></article>
+<article class="skill-card"><div class="skill-icon database">▤</div><h3>Database concepts</h3><p>Learning relational database concepts and how data is organized.</p><div class="tags"><span>RDBMS</span><span>SQL concepts</span></div></article>
+</div>
+<p class="section-note">These are current learning areas, not claims of expert-level proficiency.</p>
+</section>
+
+<section class="section projects-section" id="projects">
+<div class="section-label"><span>03 / PROJECTS</span><span>SMALL BUILDS, BIG LEARNINGS</span></div>
+<div class="section-heading"><h2>Work in <span class="gradient-text">progress.</span></h2><p>I'll use this space to share practical work and document what I learn.</p></div>
+<div class="project-grid">
+<article class="project-card">
+<div class="project-top"><span class="project-number">PROJECT 001</span><span class="status"><i></i> IN PROGRESS</span></div>
+<div class="project-art art-terminal"><span>$_</span><div class="art-lines"><i></i><i></i><i></i></div></div>
+<h3>My Portfolio Website</h3><p>A personal website to introduce myself, showcase learning milestones and track my journey toward DevOps.</p>
+<div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="project-bottom"><span>PERSONAL PROJECT</span><span>↗</span></div>
+</article>
+<article class="project-card">
+<div class="project-top"><span class="project-number">PROJECT 002</span><span class="status planned"><i></i> UNDER EXPLORATION</span></div>
+<div class="project-art art-cloud"><span>☁</span><b>02</b></div>
+<h3>project in progress</h3><p>Exploring ideas for my next project.</p>
+<div class="tags"><span>abc</span><span>def</span><span>ghi</span></div><div class="project-bottom"><span>LEARNING LAB</span><span>↗</span></div>
+</article>
+</div>
+<p class="section-note">More projects will be added as I complete and document them.</p>
+</section>
+
+<section class="section cert-section" id="certificates">
+<div class="section-label"><span>04 / CERTIFICATES</span><span>LEARNING MILESTONES</span></div>
+<div class="section-heading"><h2>Verified <span class="gradient-text">achivements.</span></h2><p>Credentials I've completed so far.</p></div>
+<div class="cert-list">
+<article class="cert-item"><div class="cert-logo ibm">IBM</div><div class="cert-details"><span class="cert-issuer">IBM SKILLSBUILD</span><h3>Relational Database Management Systems (RDBMS)</h3><p>Completed · Database fundamentals</p>
+<a href="https://courses.ibmcep.cognitiveclass.ai/certificates/6498830ff4f342e7a26652752f5f7b55" target="_blank" rel="noopener noreferrer">View Certificate ↗</a></div><span class="cert-check">✓</span></article><article class="cert-item"><div class="cert-logo fcc">fCC</div><div class="cert-details"><span class="cert-issuer">FREECODECAMP</span><h3>Responsive Web Design</h3><p>Completed · Assessment score: 82%</p>
+<a href="https://www.freecodecamp.org/certification/fcc-e2267139-3aed-4b07-8d1c-f806a608466e/responsive-web-design-v9" target="_blank" rel="noopener noreferrer">View Certificate ↗</a>
+</div><span class="cert-check">✓</span></article></div>
+</section>
+
+<section class="contact-section section" id="contact">
+<div class="contact-panel">
+<p class="eyebrow"><span class="pulse"></span> LET'S CONNECT</p>
+<h2>Every expert was<br><span class="gradient-text">once a beginner.</span></h2>
+<p>I'm learning, building and looking forward to connecting with people in technology.</p>
+<div class="contact-actions"><a class="button primary" href="https://github.com/sharuhcodehub" target="_blank" rel="noreferrer">Visit my GitHub ↗</a><a class="button primary" href="mailto:sharruhh268@gmail.com">Email Me ↗</a><div>
+</div>
+</section>
+</main>
+
+<footer>
+<a class="brand" href="#home"><span class="brand-mark">S</span> SHARON<span class="brand-dot">.</span></a>
+<span>Designed to grow with every new skill.</span>
+<span>© <span id="year"></span> SHARON</span>
+</footer>
+
+<script>
+const year = document.getElementById("year");
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
+
+const toggle = document.getElementById("menuToggle");
+const nav = document.getElementById("navLinks");
+
+if (toggle && nav) {
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    toggle.textContent = open ? "×" : "☰";
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "☰";
+    });
+  });
+}
+</script>
+</body>
+</html>
